@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Inspector Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader" id="loader" aria-label="Loading System Inspector Pro">
+    <div class="spinner"></div>
+    <p>Booting inspector...</p>
+  </div>
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="#home" data-page-link="home">
+      <span class="brand-mark">SI</span>
+      <span>System Inspector Pro</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav" id="nav">
+      <a href="#home" class="active" data-page-link="home">Home</a>
+      <a href="#dashboard" data-page-link="dashboard">Dashboard</a>
+      <a href="#environment" data-page-link="environment">Environment</a>
+      <a href="#files" data-page-link="files">Files</a>
+      <a href="#report" data-page-link="report">Report</a>
+      <a href="#docs" data-page-link="docs">Docs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active hero-page">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Frontend system simulator</p>
+          <h1>System Inspector Pro</h1>
+          <p class="hero-subtitle">Explore system information and manage your development environment.</p>
+          <button class="primary-button pulse" data-page-link="dashboard">Open Dashboard</button>
+        </div>
+        <div class="terminal-panel">
+          <div class="terminal-header">
+            <span></span><span></span><span></span>
+          </div>
+          <pre><code id="typedTerminal"></code></pre>
+        </div>
+      </div>
+
+      <div class="info-band">
+        <article class="glass-panel">
+          <h2>What is System Inspector?</h2>
+          <p>System Inspector Pro is a polished frontend dashboard that simulates how developers review operating system details, runtime metadata, environment variables, and project files from one focused workspace.</p>
+        </article>
+        <article class="glass-panel">
+          <h2>Why developers use it</h2>
+          <p>System information tools make debugging faster. They reveal OS, CPU, memory, hostname, runtime, and configuration values that often explain why an app behaves differently across machines.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard" class="page">
+      <div class="section-heading">
+        <p class="eyebrow">Live style overview</p>
+        <h2>Dashboard</h2>
+      </div>
+      <div class="metrics-strip">
+        <div>
+          <span class="counter" data-count="16">0</span>
+          <small>GB memory estimate</small>
+        </div>
+        <div>
+          <span class="counter" data-count="8">0</span>
+          <small>CPU cores</small>
+        </div>
+        <div>
+          <span class="counter" data-count="5">0</span>
+          <small>Files tracked</small>
+        </div>
+      </div>
+      <div class="dashboard-actions">
+        <button class="primary-button" id="refreshSystem">Refresh Scan</button>
+        <button class="secondary-button" id="copySnapshot">Copy Snapshot</button>
+      </div>
+      <div class="insight-grid">
+        <article class="health-panel glass-panel">
+          <div>
+            <p class="eyebrow">Live inspector lab</p>
+            <h3>System Health Score</h3>
+            <p id="healthSummary">Checking current browser capabilities...</p>
+          </div>
+          <div class="score-ring" id="scoreRing" style="--score: 0">
+            <span id="healthScore">0</span>
+          </div>
+        </article>
+        <article class="glass-panel capability-panel">
+          <p class="eyebrow">Capability audit</p>
+          <h3>Browser Access Map</h3>
+          <div class="capability-list" id="capabilityList"></div>
+        </article>
+      </div>
+      <div class="card-grid" id="systemCards"></div>
+    </section>
+
+    <section id="environment" class="page">
+      <div class="section-heading">
+        <p class="eyebrow">Configuration map</p>
+        <h2>Environment Variables</h2>
+      </div>
+      <div class="toolbar">
+        <label class="search-box">
+          <span>Search</span>
+          <input id="envSearch" type="search" placeholder="Find variable or value">
+        </label>
+        <label>
+          <span>Filter</span>
+          <select id="envFilter">
+            <option value="all">All values</option>
+            <option value="browser">Browser</option>
+            <option value="device">Device</option>
+            <option value="network">Network</option>
+            <option value="screen">Screen</option>
+            <option value="security">Security</option>
+          </select>
+        </label>
+        <button class="secondary-button" id="envSort">Sort A-Z</button>
+      </div>
+      <div class="table-wrap glass-panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="environmentTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="files" class="page">
+      <div class="section-heading">
+        <p class="eyebrow">LocalStorage CRUD</p>
+        <h2>File Manager</h2>
+      </div>
+      <div class="file-layout">
+        <form class="file-form glass-panel" id="fileForm">
+          <h3 id="formTitle">Create New File</h3>
+          <input type="hidden" id="fileId">
+          <label>
+            <span>Filename</span>
+            <input id="filename" type="text" placeholder="server.config.js" required>
+          </label>
+          <label>
+            <span>Content</span>
+            <textarea id="fileContent" rows="8" placeholder="Write simulated file content..." required></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Save File</button>
+            <button class="secondary-button" type="button" id="resetForm">Clear</button>
+          </div>
+        </form>
+        <div>
+          <button class="primary-button create-button" id="createFileButton">Create New File</button>
+          <div class="file-list" id="fileList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="report" class="page">
+      <div class="section-heading">
+        <p class="eyebrow">Exportable snapshot</p>
+        <h2>System Report</h2>
+      </div>
+      <div class="report-layout">
+        <div class="glass-panel report-actions">
+          <h3>Generate Report</h3>
+          <p>Create a JSON preview using current browser-readable system details and the latest file count from LocalStorage.</p>
+          <button class="primary-button" id="generateReport">Generate Report</button>
+          <button class="secondary-button" id="copyReport" disabled>Copy JSON</button>
+          <button class="secondary-button" id="downloadReport" disabled>Download JSON</button>
+        </div>
+        <pre class="report-preview"><code id="reportPreview">Click Generate Report to preview JSON.</code></pre>
+      </div>
+    </section>
+
+    <section id="docs" class="page">
+      <div class="section-heading">
+        <p class="eyebrow">Beginner friendly guide</p>
+        <h2>Documentation</h2>
+      </div>
+      <div class="docs-grid" id="docsGrid"></div>
+    </section>
+  </main>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
