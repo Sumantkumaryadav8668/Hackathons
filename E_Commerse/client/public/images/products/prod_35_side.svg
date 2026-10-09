@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas Card -->
+  <rect width="800" height="600" rx="24" fill="url(#bgGrad)"/>
+  
+  <!-- Outer Frame Boundary -->
+  <rect x="20" y="20" width="760" height="560" rx="16" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- Angle View Tag Header Pill -->
+  <g transform="translate(40, 40)">
+    <rect x="0" y="0" width="220" height="42" rx="10" fill="#7f1d1d"/>
+    <text x="110" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">📷 SIDE VIEW</text>
+  </g>
+
+  <!-- Product Category Badge -->
+  <g transform="translate(560, 40)">
+    <rect x="0" y="0" width="200" height="42" rx="10" fill="#ffffff" stroke="#7f1d1d" stroke-width="2"/>
+    <text x="100" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#7f1d1d" text-anchor="middle">SHOES</text>
+  </g>
+
+  <!-- MAIN PRODUCT GRAPHIC (3D Rendered Perspective) -->
+  <g filter="url(#dropShadow)">
+    
+                <!-- Shoe Full Lateral Side Profile -->
+                <path d="M 200 420 Q 240 300 380 300 Q 500 320 580 430 L 590 480 L 190 480 Z" fill="#b91c1c" stroke="#7f1d1d" stroke-width="8" />
+                <!-- Side Swoosh / Stripe Motif -->
+                <path d="M 260 400 Q 400 340 540 370 Q 420 430 300 430 Z" fill="#ffffff" stroke="#7f1d1d" stroke-width="4" />
+                <!-- Thick Cushioned Midsole -->
+                <path d="M 180 480 L 600 480 L 590 530 L 190 530 Z" fill="#ffffff" stroke="#7f1d1d" stroke-width="6" />
+                <path d="M 180 530 L 600 530 L 590 545 L 190 545 Z" fill="#7f1d1d" />
+                <text x="390" y="375" font-size="16" font-weight="900" fill="#7f1d1d" text-anchor="middle">Converse</text>
+            
+  </g>
+
+  <!-- Footer Product Model Consistency Label -->
+  <g transform="translate(40, 525)">
+    <rect x="0" y="0" width="720" height="38" rx="8" fill="#ffffff" opacity="0.9" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="20" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#334155">Product #35: Men's Canvas Sneakers</text>
+    <text x="700" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#b91c1c" text-anchor="end">MATCHING MODEL VISUAL GUARANTEE ✓</text>
+  </g>
+</svg>
