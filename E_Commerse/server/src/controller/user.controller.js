@@ -20,7 +20,7 @@ const createToken = (_id, email) => {
 const makecookie = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000
 }
 
@@ -132,7 +132,7 @@ export const logout = async (req, res) => {
         res.clearCookie("Token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax"
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
         })
 
         res.status(200).json({
@@ -187,7 +187,7 @@ export const account = async (req, res) => {
         res.clearCookie("Token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax"
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
         })
 
         res.status(200).json({

@@ -47,6 +47,7 @@ export function AuthProvider({ children }) {
                     // Normal unauthenticated session
                     setUser(null)
                     localStorage.removeItem("user")
+                    localStorage.removeItem("token")
                 } else {
                     console.log("Auth check error:", error)
                 }
@@ -77,6 +78,7 @@ export function AuthProvider({ children }) {
         setUser(null)
 
         localStorage.removeItem("user")
+        localStorage.removeItem("token")
     }
 
 

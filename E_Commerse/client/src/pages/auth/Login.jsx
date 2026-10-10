@@ -34,7 +34,10 @@ function Login() {
             setMessage("")
 
             // Login API call
-            await api.post("/user/login", formData)
+            const loginRes = await api.post("/user/login", formData)
+            if (loginRes.data?.token) {
+                localStorage.setItem("token", loginRes.data.token)
+            }
 
             // Get logged-in user profile
             const profileResponse = await api.get("/user/profile")
