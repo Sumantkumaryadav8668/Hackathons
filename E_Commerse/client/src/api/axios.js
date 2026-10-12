@@ -7,6 +7,16 @@ const rawBackendUrl =
 
 const backendUrl = rawBackendUrl.replace(/\/+$/, "");
 
+if (
+  typeof window !== "undefined" &&
+  !["localhost", "127.0.0.1"].includes(window.location.hostname) &&
+  backendUrl.includes("localhost")
+) {
+  console.warn(
+    `Frontend is running on '${window.location.origin}', but API baseURL is '${backendUrl}'. Check VITE_BACKEND_URL in Vercel.`
+  );
+}
+
 const api = axios.create({
   baseURL: backendUrl,
   withCredentials: true,
