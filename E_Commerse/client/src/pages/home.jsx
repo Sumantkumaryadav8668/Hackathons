@@ -37,9 +37,12 @@ function Home() {
             }
         } catch (err) {
             console.error("GET PRODUCTS ERROR:", err)
+            const isNetworkErr = err.code === "ERR_NETWORK" || err.message?.includes("Network Error")
             setError(
                 err.response?.data?.message ||
-                "Failed to load products from database. Please check your network connection or server status."
+                (isNetworkErr
+                    ? "Backend server is not reachable at " + (api.defaults.baseURL || "http://localhost:3000") + ". Please ensure your backend Express server is started ('node server.js' or 'npm run dev')."
+                    : "Failed to load products from database. Please check your network connection or server status.")
             )
         } finally {
             setLoading(false)
